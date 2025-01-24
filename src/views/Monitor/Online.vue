@@ -3,7 +3,7 @@
       <h1>在线用户</h1>
       <el-table :data="onlineUsers" style="width: 100%">
         <el-table-column prop="username" label="用户名" />
-        <el-table-column prop="ip" label="IP地址" />
+        <el-table-column prop="ip" label="IP地址11" />
         <el-table-column prop="loginTime" label="登录时间" />
       </el-table>
     </div>
