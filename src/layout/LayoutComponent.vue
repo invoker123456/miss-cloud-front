@@ -18,7 +18,7 @@
               <el-icon><HomeFilled /></el-icon>
               <span>首页</span>
             </el-menu-item>
-            <el-submenu index="system">
+            <el-sub-menu index="system">
               <template #title>
                 <el-icon><Menu /></el-icon>
                 <span>系统管理</span>
@@ -27,8 +27,8 @@
               <el-menu-item index="/system/role">角色管理</el-menu-item>
               <el-menu-item index="/system/dept">部门管理</el-menu-item>
               <el-menu-item index="/system/post">岗位管理</el-menu-item>
-            </el-submenu>
-            <el-submenu index="monitor">
+            </el-sub-menu>
+            <el-sub-menu index="monitor">
               <template #title>
                 <el-icon><DataAnalysis /></el-icon>
                 <span>监控管理</span>
@@ -36,7 +36,7 @@
               <el-menu-item index="/monitor/online">在线用户</el-menu-item>
               <el-menu-item index="/monitor/log">操作日志</el-menu-item>
               <el-menu-item index="/monitor/login-info">登录信息</el-menu-item>
-            </el-submenu>
+            </el-sub-menu>
           </el-menu>
         </el-aside>
   
