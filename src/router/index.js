@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from '../views/LoginPage.vue';
 import Home from '../views/Home.vue';
-import User from '../views/System/User.vue';
+import User from '../views/System/SystemUser.vue';
 import Role from '../views/System/Role.vue';
 import Dept from '../views/System/Dept.vue';
 import Post from '../views/System/Post.vue';
