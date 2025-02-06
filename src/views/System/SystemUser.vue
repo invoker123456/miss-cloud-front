@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import api from '@/utils/api'; // 导入封装的 axios 实例
+import { get } from '@/utils/api'; // 导入封装的 axios 实例
 
 // 用户列表数据
 const userList = ref([]);
@@ -33,8 +33,13 @@ const userList = ref([]);
 // 获取用户列表
 const fetchUserList = async () => {
   try {
-    const response = await api.get('/user/list');
-    userList.value = response.data; // 假设后端返回的数据直接是用户列表
+    const response = await get('/system/user/list');
+    // 假设后端返回的数据结构是 { code, msg, data }
+    if (response.code === 200) {
+      userList.value = response.rows; // 将用户列表数据绑定到 userList
+    } else {
+      console.error('获取用户列表失败:', response.msg);
+    }
   } catch (err) {
     console.error('获取用户列表失败:', err);
   }

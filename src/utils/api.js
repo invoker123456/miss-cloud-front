@@ -9,7 +9,12 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
-    // 在发送请求之前做一些处理
+    // 从本地存储中获取 token
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      // 如果 token 存在，将其添加到请求头的 Authorization 字段中
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
