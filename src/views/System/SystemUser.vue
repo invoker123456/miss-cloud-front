@@ -1,5 +1,8 @@
 <template>
   <div class="user-management-container">
+    <!-- 引入通用工具栏 -->
+    <CommonToolbar />
+
     <el-table :data="userList" style="width: 100%">
       <el-table-column prop="userName" label="用户名" width="180" />
       <el-table-column prop="nickName" label="昵称" width="180" />
@@ -26,6 +29,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { get } from '@/utils/api'; // 导入封装的 axios 实例
+import CommonToolbar from '@/components/CommonToolbar.vue'; // 引入通用工具栏组件
 
 // 用户列表数据
 const userList = ref([]);
