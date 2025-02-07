@@ -1,14 +1,15 @@
 <template>
   <div class="user-management-container">
     <!-- 引入通用工具栏 -->
-    <CommonToolbar />
+    <CommonToolbar :selectedRows="selectedRows"/>
 
-    <el-table :data="userList" style="width: 100%">
-      <el-table-column prop="userName" label="用户名" width="180" />
-      <el-table-column prop="nickName" label="昵称" width="180" />
-      <el-table-column prop="email" label="邮箱" width="180" />
-      <el-table-column prop="phonenumber" label="手机号" width="180" />
-      <el-table-column prop="dept.deptName" label="部门" width="180" />
+    <el-table :data="userList" style="width: 100%" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column prop="userName" label="用户名" width="180"/>
+      <el-table-column prop="nickName" label="昵称" width="180"/>
+      <el-table-column prop="email" label="邮箱" width="180"/>
+      <el-table-column prop="phonenumber" label="手机号" width="180"/>
+      <el-table-column prop="dept.deptName" label="部门" width="180"/>
       <el-table-column prop="status" label="状态" width="180">
         <template #default="scope">
           <el-tag :type="scope.row.status === '0' ? 'success' : 'danger'">
@@ -26,13 +27,16 @@
   </div>
 </template>
 
+
 <script setup>
-import { ref, onMounted } from 'vue';
-import { get } from '@/utils/api'; // 导入封装的 axios 实例
+import {onMounted, ref} from 'vue';
+import {get} from '@/utils/api'; // 导入封装的 axios 实例
 import CommonToolbar from '@/components/CommonToolbar.vue'; // 引入通用工具栏组件
 
 // 用户列表数据
 const userList = ref([]);
+// 选中的行
+const selectedRows = ref([]);
 
 // 获取用户列表
 const fetchUserList = async () => {
@@ -65,6 +69,12 @@ const handleDelete = (user) => {
 onMounted(() => {
   fetchUserList();
 });
+
+// 监听选中行的变化
+const handleSelectionChange = (val) => {
+  selectedRows.value = val;
+};
+
 </script>
 
 <style scoped>
