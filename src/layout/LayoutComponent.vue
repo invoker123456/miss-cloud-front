@@ -5,6 +5,9 @@
           <img src="@/assets/logo.png" alt="Logo" class="logo" />
           <h1 class="app-title">Miss Cloud Front</h1>
         </div>
+        <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
+          <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index" :to="item.path">{{ item.name }}</el-breadcrumb-item>
+        </el-breadcrumb>
       </el-header>
   
       <el-container style="height: calc(100vh - 64px);">
@@ -48,7 +51,19 @@
   </template>
   
   <script setup>
+  import { computed } from 'vue';
+  import { useRoute } from 'vue-router';
   import { HomeFilled, Menu, DataAnalysis } from '@element-plus/icons-vue';
+
+  const route = useRoute();
+
+  const breadcrumbList = computed(() => {
+    const matched = route.matched;
+    return matched.map((item) => ({
+      path: item.path,
+      name: item.meta.title || item.name,
+    }));
+  });
   </script>
   
   <style scoped>
@@ -88,5 +103,10 @@
   
   .sidebar-menu {
     height: 100%;
+  }
+
+  .breadcrumb {
+    flex-grow: 1; /* 让面包屑导航占据剩余的空间 */
+    text-align: center; /* 可选：将面包屑导航文本居中 */
   }
   </style>
